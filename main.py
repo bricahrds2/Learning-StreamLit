@@ -59,7 +59,10 @@ def get_pokemon_data(pokemonname) -> dict:
 pokemon_data = get_pokemon_data(pokemon_name)
 pokemon_data_2 = get_pokemon_data(pokemon_name_2)
 
-if pokemon_data and pokemon_name_2:
+if pokemon_data and pokemon_data_2:
+    col1, col2 = st.columns(2)
+
+with col1:
     st.write('Pokemon Data Retrieved Successfully')
     st.header(pokemon_data.get('name').capitalize())
     st.image(pokemon_data.get('sprites').get('front_default'))
@@ -68,4 +71,15 @@ if pokemon_data and pokemon_name_2:
     annotated_text(
         (pokemon_type,'', colours[pokemon_type])
     )
+with col2:
+    st.write('Pokemon Data Retrieved Successfully')
+    st.header(pokemon_data_2.get('name').capitalize())
+    st.image(pokemon_data_2.get('sprites').get('front_default'))
+    st.write('Pokemon Weight',pokemon_data_2.get('weight'))
+    pokemon_type = pokemon_data_2.get("types")[0].get("type").get("name")
+    annotated_text(
+        (pokemon_type,'', colours[pokemon_type])
+    )
+
+    
     
