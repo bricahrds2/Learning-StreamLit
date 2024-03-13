@@ -29,21 +29,38 @@ colours = {
 	'fairy': '#D685AD'
 }
 
+randomnumber = str(np.random.randint(1, 1000))
+randomnumber2 = str(np.random.randint(1, 1000))
 
-def get_pokemon_data() -> dict:
+#Fetch random pokemon name
+def get_random_pokemon(number:int) -> str:
     try:
-        url = 'https://pokeapi.co/api/v2/pokemon/ditto'
+        url = 'https://pokeapi.co/api/v2/pokemon/'+number
         response = requests.get(url)
         data = response.json()
-        st.write('Pokemon Data Rectrieved Successfully')
+    except Exception as e:
+        st.write(f'Error: {e}')
+        data = None
+    return data.get('name')
+
+pokemon_name = get_random_pokemon(randomnumber)
+pokemon_name_2 = get_random_pokemon(randomnumber2)
+
+def get_pokemon_data(pokemonname) -> dict:
+    try:
+        url = 'https://pokeapi.co/api/v2/pokemon/'+pokemonname
+        response = requests.get(url)
+        data = response.json()
     except Exception as e:
         st.write(f'Error: {e}')
         data = None
     return data
 
-pokemon_data = get_pokemon_data()
+pokemon_data = get_pokemon_data(pokemon_name)
+pokemon_data_2 = get_pokemon_data(pokemon_name_2)
 
-if pokemon_data:
+if pokemon_data and pokemon_name_2:
+    st.write('Pokemon Data Retrieved Successfully')
     st.header(pokemon_data.get('name').capitalize())
     st.image(pokemon_data.get('sprites').get('front_default'))
     st.write('Pokemon Weight',pokemon_data.get('weight'))
