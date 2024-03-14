@@ -29,6 +29,7 @@ colours = {
 	'fairy': '#D685AD'
 }
 
+
 randomnumber = str(np.random.randint(1, 1000))
 randomnumber2 = str(np.random.randint(1, 1000))
 
@@ -81,5 +82,25 @@ with col2:
         (pokemon_type,'', colours[pokemon_type])
     )
 
+comparison = {
+    pokemon_data.get('name').capitalize(): {
+        'hp': pokemon_data.get('stats')[0].get('base_stat'),
+        'attack': pokemon_data.get('stats')[1].get('base_stat'),
+        'defense': pokemon_data.get('stats')[2].get('base_stat'),
+        'special_attack': pokemon_data.get('stats')[3].get('base_stat'),
+        'special_defense': pokemon_data.get('stats')[4].get('base_stat'),
+        'speed': pokemon_data.get('stats')[5].get('base_stat')
+    },
+    pokemon_data_2.get('name').capitalize(): {
+        'hp': pokemon_data_2.get('stats')[0].get('base_stat'),
+        'attack': pokemon_data_2.get('stats')[1].get('base_stat'),
+        'defense': pokemon_data_2.get('stats')[2].get('base_stat'),
+        'special_attack': pokemon_data_2.get('stats')[3].get('base_stat'),
+        'special_defense': pokemon_data_2.get('stats')[4].get('base_stat'),
+        'speed': pokemon_data_2.get('stats')[5].get('base_stat')
+    }
+}
+
+st.bar_chart(comparison)
     
     
