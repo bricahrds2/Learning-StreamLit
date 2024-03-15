@@ -1,11 +1,9 @@
-# Learning-StreamLit
-
 # Pokemon Stat Comparison
 
 ![image](https://github.com/bricahrds2/Learning-StreamLit/assets/55713521/646d8af7-5c27-4d31-8d43-2bb4ffa3ba45)
 
 This Streamlit app allows you to compare the stats of two randomly selected Pokémon.
-
+## Learning Streamlit App
 ## Overview
 
 This project utilizes the Pokémon API (https://pokeapi.co/) to fetch data about Pokémon and compare their stats. It randomly selects two Pokémon and displays their basic information along with an image. Additionally, it visualizes their weight and compares their base HP using a bar chart.
