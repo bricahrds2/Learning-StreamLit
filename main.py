@@ -29,7 +29,6 @@ colours = {
 	'fairy': '#D685AD'
 }
 
-
 randomnumber = str(np.random.randint(1, 1000))
 randomnumber2 = str(np.random.randint(1, 1000))
 
@@ -57,6 +56,16 @@ def get_pokemon_data(pokemonname) -> dict:
         data = None
     return data
 
+def get_pokemon_weakness(pokemon_type) -> dict:
+    try:
+        url = 'https://pokeapi.co/api/v2/type/'+pokemon_type
+        response = requests.get(url)
+        data = response.json()
+    except Exception as e:
+        st.write(f'Error: {e}')
+        data = None
+    return data
+
 pokemon_data = get_pokemon_data(pokemon_name)
 pokemon_data_2 = get_pokemon_data(pokemon_name_2)
 
@@ -72,6 +81,17 @@ with col1:
     annotated_text(
         (pokemon_type,'', colours[pokemon_type])
     )
+    st.subheader('Weakness')
+    pokemon_weak = get_pokemon_weakness(pokemon_type)
+    double_damage_from = pokemon_weak.get('damage_relations').get('double_damage_from')
+
+    if double_damage_from:
+        for weakness in double_damage_from:
+            weak_name = weakness.get('name')
+            annotated_text(
+                (weak_name, '', colours[weak_name])
+            )
+
 with col2:
     st.write('Pokemon Data Retrieved Successfully')
     st.header(pokemon_data_2.get('name').capitalize())
@@ -81,6 +101,16 @@ with col2:
     annotated_text(
         (pokemon_type,'', colours[pokemon_type])
     )
+    st.subheader('Weakness')
+    pokemon_weak = get_pokemon_weakness(pokemon_type)
+    double_damage_from = pokemon_weak.get('damage_relations').get('double_damage_from')
+
+    if double_damage_from:
+        for weakness in double_damage_from:
+            weak_name = weakness.get('name')
+            annotated_text(
+                (weak_name, '', colours[weak_name])
+            )
 
 comparison = {
     pokemon_data.get('name').capitalize(): {
