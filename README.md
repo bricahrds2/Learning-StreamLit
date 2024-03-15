@@ -31,10 +31,12 @@ https://github.com/your-username/pokemon-stat-comparison.git
 
 2. Install the required dependencies:
 
+```python
 pip install -r requirements.txt
 
 3. Run the Streamlit app:
 
+```python
 streamlit run app.py
 
 4. Access the app in your web browser at `http://localhost:8501`.
